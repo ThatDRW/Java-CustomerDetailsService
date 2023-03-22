@@ -16,7 +16,9 @@ You can now run all `(Auth)` marked requests.
 The h2 console can be found at `localhost:8080/h2`
 
 `JDBC URL     :   jdbc:h2:mem:customerdetailsservice`
+
 `User Name    :   sa                                `
+
 `Password     :   <blank>                           `
 
 ## OpenAPI Documentation Access
