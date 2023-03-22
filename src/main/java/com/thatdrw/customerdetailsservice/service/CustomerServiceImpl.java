@@ -36,9 +36,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findCustomer(String query) {
-        Optional<Customer> customer = customerRepository.findByFirstNameContainsOrLastNameContains(query, query);
-        return unwrapCustomer(customer, -1L);
+    public List<Customer> findCustomer(String query) {
+        Optional<List<Customer>> customer = customerRepository.findByFirstNameContainsOrLastNameContains(query, query);
+        return unwrapCustomerList(customer, -1L);
     }
 
     @Override
@@ -54,5 +54,14 @@ public class CustomerServiceImpl implements CustomerService {
         else
             throw new EntityNotFoundException(id, Customer.class);
     }
+
+    static List<Customer> unwrapCustomerList(Optional<List<Customer>> entity, Long id) {
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new EntityNotFoundException(id, Customer.class);
+    }
+    
+
     
 }

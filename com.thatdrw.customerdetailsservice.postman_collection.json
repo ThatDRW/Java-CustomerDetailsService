@@ -8,6 +8,9 @@
 		{
 			"name": "1. Register User",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -37,10 +40,22 @@
 		{
 			"name": "2. Get All Customers (No Auth)",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/customer/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"all"
+					]
 				}
 			},
 			"response": []
@@ -51,11 +66,14 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\":\"user\",\n    \"password\":\"pass\"\n}",
+					"raw": "{\n    \"username\":\"userafaf\",\n    \"password\":\"passafaf\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,14 +81,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/login",
+					"raw": "http://localhost:8080/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"login"
+						"authenticate"
 					]
 				}
 			},
@@ -82,6 +100,9 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -109,11 +130,32 @@
 		},
 		{
 			"name": "5. Get All Customers (Auth)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"user\",\n    \"password\":\"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/customer/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"all"
+					]
 				}
 			},
 			"response": []
@@ -141,16 +183,6 @@
 		{
 			"name": "7. Add New Customer (Auth)",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjc5NDIxOTQzfQ.ZhkqxJgIzRmQHiNS5X7zfe2K7JA0BS7-Mnfzh3J34XoMw5bkzpe1OGyK-aloGr9qX6jAlfKs1DnblFmE2929hw",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -182,7 +214,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/customer/1",
+					"raw": "http://localhost:8080/customer/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -190,11 +222,83 @@
 					"port": "8080",
 					"path": [
 						"customer",
-						"1"
+						"3"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "9. Find Customer By Name (Run 8 first) (Auth)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/find/Added",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"find",
+						"Added"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Find Customers By Name <List> (Auth)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/find/Doe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"find",
+						"Doe"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjc5NDg1ODQyfQ.cFyLTIiqXN2JkBrCujtCOfowtnRcYt3KIn6SOSFEs99bFMpoQrl1eMfpB366dNd8qeAkZPifYcpgNfmEgTbU4Q",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

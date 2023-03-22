@@ -40,7 +40,7 @@ public class CustomerController {
     }
 
     @GetMapping("/find/{query}")
-    public ResponseEntity<Customer> findCustomer(@PathVariable String query) {
+    public ResponseEntity<List<Customer>> findCustomer(@PathVariable String query) {
         return new ResponseEntity<>(customerService.findCustomer(query), HttpStatus.OK);
     }
     
