@@ -94,14 +94,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/login",
+					"raw": "http://localhost:8080/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"login"
+						"authenticate"
 					]
 				}
 			},
