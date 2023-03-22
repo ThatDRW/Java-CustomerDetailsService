@@ -65,13 +65,13 @@ public class CustomerController {
     }
     
     @Operation(summary = "Update customer address", description = "Update customer address with new address provided in body.")
-    @ApiResponse(responseCode = "201", description = "Customer address updated succesfully.", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Customer.class))))
+    @ApiResponse(responseCode = "200", description = "Customer address updated succesfully.", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Customer.class))))
     @ApiResponse(responseCode = "403", description = "Operation requires Auth.")
     @ApiResponse(responseCode = "404", description = "Customer not found.")
     @PostMapping("/{id}/updateAddress")
     public ResponseEntity<Customer> updateAddress(@PathVariable Long id, @RequestBody String address) {
         Customer customer = customerService.getCustomer(id);
         customer.setAddress(address);
-        return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);
     }
 }
