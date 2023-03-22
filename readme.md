@@ -1,5 +1,7 @@
- \## About
+# CustomerDetailsService Application
+## About
 Small assignment in Java.
+Running on Java 17 and Spring 2.
 
 ## Instructions
 Clone, then run with `mvn clean spring-boot:run`.
