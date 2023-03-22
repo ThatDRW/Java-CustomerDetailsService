@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findCustomer(String query) {
-        Optional<Customer> customer = customerRepository.findByFirstNameOrLastName(query, query);
+        Optional<Customer> customer = customerRepository.findByFirstNameContainsOrLastNameContains(query, query);
         return unwrapCustomer(customer, -1L);
     }
 

@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    Optional<Customer> findByFirstNameOrLastName(String firstName, String lastName);
+    Optional<Customer> findByFirstNameContainsOrLastNameContains(String firstName, String lastName);
     
 }
