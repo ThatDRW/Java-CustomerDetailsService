@@ -9,5 +9,4 @@ import com.thatdrw.customerdetailsservice.entity.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
     Optional<List<Customer>> findByFirstNameContainsOrLastNameContains(String firstName, String lastName);
-    
 }
