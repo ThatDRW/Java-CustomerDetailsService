@@ -8,7 +8,7 @@ Clone, then run with `mvn clean spring-boot:run`.
 
 Import `com.thatdrw.customerdeailsservice.postman_collection.json` into Postman.
 
-Run `1. Register User` and copy the `JWT Bearer Token` (_without 'Bearer '_)from the response header.
+Run `1. Register User` and copy the `JWT Bearer Token` (_without 'Bearer '_) from the response header.
 
 Paste this token in the `Authentication` tab, as type `Bearer Token` of the **com.thatdrw.customerdetailsservice COLLECTION**. The other Requests will inherit Authentication from the collection.
 
