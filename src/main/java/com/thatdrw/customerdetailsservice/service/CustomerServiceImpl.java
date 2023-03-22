@@ -48,14 +48,14 @@ public class CustomerServiceImpl implements CustomerService {
         return saveCustomer(customer);
     }
 
-    static Customer unwrapCustomer(Optional<Customer> entity, Long id) {
+    public static Customer unwrapCustomer(Optional<Customer> entity, Long id) {
         if (entity.isPresent())
             return entity.get();
         else
             throw new EntityNotFoundException(id, Customer.class);
     }
 
-    static List<Customer> unwrapCustomerList(Optional<List<Customer>> entity, Long id) {
+    public static List<Customer> unwrapCustomerList(Optional<List<Customer>> entity, Long id) {
         if (entity.isPresent())
             return entity.get();
         else
