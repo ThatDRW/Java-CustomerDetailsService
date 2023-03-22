@@ -19,5 +19,5 @@ public interface CustomerService {
     
     List<Customer> findCustomer(String query);
 
-    void updateCustomerAddress(Long id, String address);
+    Customer updateCustomerAddress(Long id, String address);
 }

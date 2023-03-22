@@ -42,10 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomerAddress(Long id, String address) {
+    public Customer updateCustomerAddress(Long id, String address) {
         Customer customer = getCustomer(id);
         customer.setAddress(address);
-        saveCustomer(customer);
+        return saveCustomer(customer);
     }
 
     static Customer unwrapCustomer(Optional<Customer> entity, Long id) {
