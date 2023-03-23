@@ -36,11 +36,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    static User unwrapUser(Optional<User> entity, Long id) {
+    public static User unwrapUser(Optional<User> entity, Long id) {
         if (entity.isPresent()) return entity.get();
         else throw new EntityNotFoundException(id, User.class);
     }
-
-
     
 }
