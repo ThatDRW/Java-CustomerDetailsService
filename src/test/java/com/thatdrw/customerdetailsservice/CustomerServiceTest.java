@@ -32,13 +32,23 @@ public class CustomerServiceTest {
     public void getCustomersFromRepoTest() {
         Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
         Customer customer2 = new Customer("second","last",22,"12 abcstreet, 1234ab abdam");
-        
-        when(customerRepository.findAll()).thenReturn(Arrays.asList(customer, customer2));
+        List<Customer> customerlist = Arrays.asList(customer, customer2);
+        when(customerRepository.findAll()).thenReturn(customerlist);
         
         List<Customer> result = customerService.getCustomers();
         
-        assertEquals("first", result.get(0).getFirstName());
-        assertEquals("second", result.get(1).getFirstName());
+        assertEquals(customerlist, result);
+    }
+    
+    @Test
+    public void getSetCustomerFieldsTest() {
+        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer1 = new Customer("please","over",1,"write");
+
+        customer1.setFirstName(customer.getFirstName());
+        customer1.setLastName(customer.getLastName());
+        customer1.setAge(customer.getAge());
+        customer1.setAddress(customer.getAddress());
     }
     
     @Test
