@@ -1,13 +1,40 @@
 package com.thatdrw.customerdetailsservice.integration;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.thatdrw.customerdetailsservice.web.CustomerController;
+import com.thatdrw.customerdetailsservice.web.UserController;
 
 @SpringBootTest
-class CustomerdetailsserviceApplicationTests {
+@RunWith(SpringRunner.class)
+public class CustomerdetailsserviceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Autowired
+    private UserController userController;
+
+    @Autowired
+    private CustomerController customerController;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Test
+    public void contextLoadCustomerController() {
+        assertNotNull(userController);
+        assertNotNull(customerController);
+        assertNotNull(bCryptPasswordEncoder);
+        assertNotNull(mockMvc);
+    }
 
 }
