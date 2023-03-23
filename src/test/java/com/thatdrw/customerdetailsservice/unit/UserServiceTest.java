@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice;
+package com.thatdrw.customerdetailsservice.unit;
 
 import java.util.Optional;
 

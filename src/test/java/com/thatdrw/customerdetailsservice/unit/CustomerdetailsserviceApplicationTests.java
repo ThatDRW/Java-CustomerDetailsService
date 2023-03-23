@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice;
+package com.thatdrw.customerdetailsservice.unit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
