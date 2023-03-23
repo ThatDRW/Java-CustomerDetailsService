@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ExceptionHandlerFilter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.thatdrw.customerdetailsservice.security.filter</a>
+</div>
+
+<h1>Coverage Summary for Class: ExceptionHandlerFilter (com.thatdrw.customerdetailsservice.security.filter)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExceptionHandlerFilter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    6,7%
+  </span>
+  <span class="absValue">
+    (1/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.thatdrw.customerdetailsservice.security.filter;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;import javax.servlet.FilterChain;
+&nbsp;import javax.servlet.ServletException;
+&nbsp;import javax.servlet.http.HttpServletRequest;
+&nbsp;import javax.servlet.http.HttpServletResponse;
+&nbsp;
+&nbsp;import org.springframework.web.filter.OncePerRequestFilter;
+&nbsp;import com.auth0.jwt.exceptions.JWTVerificationException;
+&nbsp;import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
+&nbsp;
+<b class="fc">&nbsp;public class ExceptionHandlerFilter extends OncePerRequestFilter {</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+&nbsp;        try {
+<b class="nc">&nbsp;            filterChain.doFilter(request, response);</b>
+<b class="nc">&nbsp;        } catch (EntityNotFoundException e) { //Feel free to create a separate function.</b>
+<b class="nc">&nbsp;            response.setStatus(HttpServletResponse.SC_NOT_FOUND);</b>
+<b class="nc">&nbsp;            response.getWriter().write(&quot;Username doesn&#39;t exist&quot;);</b>
+<b class="nc">&nbsp;            response.getWriter().flush();</b>
+<b class="nc">&nbsp;        } catch (JWTVerificationException e) {</b>
+<b class="nc">&nbsp;            response.setStatus(HttpServletResponse.SC_FORBIDDEN);</b>
+<b class="nc">&nbsp;            response.getWriter().write(&quot;JWT NOT VALID&quot;);</b>
+<b class="nc">&nbsp;            response.getWriter().flush();</b>
+<b class="nc">&nbsp;        } catch (RuntimeException e) {</b>
+<b class="nc">&nbsp;            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);</b>
+<b class="nc">&nbsp;            response.getWriter().write(&quot;BAD REQUEST&quot;);</b>
+<b class="nc">&nbsp;            response.getWriter().flush();</b>
+<b class="nc">&nbsp;        }  </b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-23 11:57</div>
+</div>
+</body>
+</html>

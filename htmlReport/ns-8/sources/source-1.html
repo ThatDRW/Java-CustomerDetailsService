@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CustomerServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.thatdrw.customerdetailsservice.service</a>
+</div>
+
+<h1>Coverage Summary for Class: CustomerServiceImpl (com.thatdrw.customerdetailsservice.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomerServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.thatdrw.customerdetailsservice.service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import com.thatdrw.customerdetailsservice.entity.Customer;
+&nbsp;import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
+&nbsp;import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
+&nbsp;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+&nbsp;@Service
+&nbsp;public class CustomerServiceImpl implements CustomerService {
+&nbsp;
+&nbsp;    private CustomerRepository customerRepository;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Customer saveCustomer(Customer customer) {
+<b class="fc">&nbsp;        return customerRepository.save(customer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Customer&gt; getCustomers() {
+<b class="fc">&nbsp;        return (List&lt;Customer&gt;)customerRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Customer getCustomer(Long id) {
+<b class="fc">&nbsp;        Optional&lt;Customer&gt; customer = customerRepository.findById(id);</b>
+<b class="fc">&nbsp;        return unwrapCustomer(customer, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Customer&gt; findCustomer(String query) {
+<b class="fc">&nbsp;        Optional&lt;List&lt;Customer&gt;&gt; customer = customerRepository.findByFirstNameContainsOrLastNameContains(query, query);</b>
+<b class="fc">&nbsp;        return unwrapCustomerList(customer, -1L);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Customer updateCustomerAddress(Long id, String address) {
+<b class="fc">&nbsp;        Customer customer = getCustomer(id);</b>
+<b class="fc">&nbsp;        customer.setAddress(address);</b>
+<b class="fc">&nbsp;        return saveCustomer(customer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Customer unwrapCustomer(Optional&lt;Customer&gt; entity, Long id) {
+<b class="fc">&nbsp;        if (entity.isPresent())</b>
+<b class="fc">&nbsp;            return entity.get();</b>
+&nbsp;        else
+<b class="fc">&nbsp;            throw new EntityNotFoundException(id, Customer.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static List&lt;Customer&gt; unwrapCustomerList(Optional&lt;List&lt;Customer&gt;&gt; entity, Long id) {
+<b class="fc">&nbsp;        if (entity.isPresent())</b>
+<b class="fc">&nbsp;            return entity.get();</b>
+&nbsp;        else
+<b class="fc">&nbsp;            throw new EntityNotFoundException(id, Customer.class);</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;
+&nbsp;    
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-23 11:57</div>
+</div>
+</body>
+</html>
