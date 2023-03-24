@@ -23,7 +23,7 @@ AssignmentOur business needs a solution for maintaining customer details and hav
     - [x] Java 17 runtime
     - [x] Spring Boot 2/3
     - [ ] Cloud native microservice ready
-    - [ ] Production ready (unit test and code compliancy should be there)
+    - [x] Production ready (unit test and code compliancy should be there)
     - [x] Persistence in a SQL DB (in memory DB will do for the assignment) (e.g. H2 in memory or dockerized Postgres)
     - [x] The project must be stored in GIT on either Github or Gitlab and must be made accessible (this is for understanding git related stuff)
 
@@ -41,7 +41,10 @@ Clone, then run with `mvn clean spring-boot:run`.
 
 Import `com.thatdrw.customerdeailsservice.postman_collection.json` into Postman.
 
-Run `1. Register User` and copy the `JWT Bearer Token` (_without 'Bearer '_) from the response header.
+### Setup JWT Token
+Run `1. Register User`. 
+
+Run `4. Login User (w/ Correct Credentials)` and copy the `JWT Bearer Token` (_without 'Bearer '_) from the response header.
 
 Paste this token in the `Authentication` tab, as type `Bearer Token` of the **com.thatdrw.customerdetailsservice COLLECTION**. The other Requests will inherit Authentication from the collection.
 
