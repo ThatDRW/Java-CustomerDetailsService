@@ -4,7 +4,7 @@ Small assignment in Java.
 Running on Java 17 and Spring-Boot 3.
 
 ## Assignment and Progress
-AssignmentOur business needs a solution for maintaining customer details and have asked you to develop a service that allows them to add, read, store and update customer details. 
+Our business needs a solution for maintaining customer details and have asked you to develop a service that allows them to add, read, store and update customer details. 
 
 - [x] The following details of a customer must be managed:
     - [x] First name
@@ -22,8 +22,10 @@ AssignmentOur business needs a solution for maintaining customer details and hav
 - [ ] Technical requirements:
     - [x] Java 17 runtime
     - [x] Spring Boot 2/3
-    - [ ] Cloud native microservice ready
+    - [x] Cloud native microservice ready
+        - [x] SecurityContants
     - [x] Production ready (unit test and code compliancy should be there)
+        - [x] 97.3% Line Coverage on Unit and Integration Tests
     - [x] Persistence in a SQL DB (in memory DB will do for the assignment) (e.g. H2 in memory or dockerized Postgres)
     - [x] The project must be stored in GIT on either Github or Gitlab and must be made accessible (this is for understanding git related stuff)
 
@@ -35,6 +37,11 @@ AssignmentOur business needs a solution for maintaining customer details and hav
     - [x] OpenAPI Documentation
         - [x] User Controller
         - [x] Customer Controller
+    
+    - [x] Migrate from Spring-Boot 2 -> Spring-Boot 3
+        - [x] Spring-Boot 2.7.* -> 3.0.*
+        - [x] Java EE -> Jakarta EE
+        - [x] Spring Security 6.0
 
 ## Instructions
 Clone, then run with `mvn clean spring-boot:run`.
