@@ -122,8 +122,6 @@ public class UserControllerTest {
                                        .andExpect(status().isOk())
                                        .andReturn();
         
-        String name = authResult.getClass().getSimpleName();
-        
         String bearerToken = authResult.getResponse().getHeader(SecurityConstants.AUTHORIZATION);
         //#endregion
 
