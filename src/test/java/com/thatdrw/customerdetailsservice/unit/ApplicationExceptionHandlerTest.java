@@ -18,8 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.thatdrw.customerdetailsservice.ApplicationExceptionHandler;
 import com.thatdrw.customerdetailsservice.exception.ErrorResponse;
 
-// @SpringBootTest
-// @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 public class ApplicationExceptionHandlerTest {
 
