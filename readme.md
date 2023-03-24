@@ -1,7 +1,7 @@
 # CustomerDetailsService Application
 ## About
 Small assignment in Java.
-Running on Java 17 and Spring 2.
+Running on Java 17 and Spring-Boot 3.
 
 ## Assignment and Progress
 AssignmentOur business needs a solution for maintaining customer details and have asked you to develop a service that allows them to add, read, store and update customer details. 
