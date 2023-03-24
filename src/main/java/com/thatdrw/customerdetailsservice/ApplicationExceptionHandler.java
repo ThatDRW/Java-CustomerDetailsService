@@ -19,14 +19,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.exception.ErrorResponse;
-// import com.thatdrw.customerdetailsservice.exception.GradeNotFoundException;
-// import com.thatdrw.customerdetailsservice.exception.StudentNotEnrolledException;
-
 
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({EntityNotFoundException.class}) //  GradeNotFoundException.class, StudentNotEnrolledException.class)
+    @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));  
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
