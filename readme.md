@@ -19,7 +19,7 @@ Our business needs a solution for maintaining customer details and have asked yo
     - [x] Search customers by first name and/or last name
     - [x] Update the living address
 
-- [ ] Technical requirements:
+- [x] Technical requirements:
     - [x] Java 17 runtime
     - [x] Spring Boot 2/3
     - [x] Cloud native microservice ready
