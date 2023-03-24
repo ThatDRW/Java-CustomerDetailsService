@@ -2,7 +2,7 @@ package com.thatdrw.customerdetailsservice.unit;
 
 import java.util.Arrays;
 
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
 import static org.junit.Assert.assertEquals;
 
