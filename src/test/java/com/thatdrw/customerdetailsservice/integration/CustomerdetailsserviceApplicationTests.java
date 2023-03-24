@@ -32,7 +32,7 @@ public class CustomerdetailsserviceApplicationTests {
     private MockMvc mockMvc;
     
     @Test
-    public void contextLoadCustomerController() {
+    public void contextLoads() {
         assertNotNull(userController);
         assertNotNull(customerController);
         assertNotNull(bCryptPasswordEncoder);
