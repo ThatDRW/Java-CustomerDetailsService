@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.thatdrw.customerdetailsservice.entity.Customer;
-import com.thatdrw.customerdetailsservice.entity.User;
 import com.thatdrw.customerdetailsservice.web.CustomerController;
 import com.thatdrw.customerdetailsservice.web.UserController;
 
