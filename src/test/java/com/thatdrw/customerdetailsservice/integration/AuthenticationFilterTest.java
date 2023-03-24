@@ -73,7 +73,7 @@ public class AuthenticationFilterTest {
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(invalidjson);
 
-        mockMvc.perform(request).andExpect(status().isNotFound());
+        mockMvc.perform(request).andExpect(status().isUnauthorized());
 
     }
     

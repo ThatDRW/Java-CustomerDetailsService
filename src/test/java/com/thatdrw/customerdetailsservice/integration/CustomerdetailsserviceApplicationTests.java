@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.thatdrw.customerdetailsservice.security.SecurityConstants;
 import com.thatdrw.customerdetailsservice.web.CustomerController;
 import com.thatdrw.customerdetailsservice.web.UserController;
 
@@ -30,6 +31,8 @@ public class CustomerdetailsserviceApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private final SecurityConstants securityContants = new SecurityConstants();
     
     @Test
     public void contextLoads() {
@@ -37,6 +40,7 @@ public class CustomerdetailsserviceApplicationTests {
         assertNotNull(customerController);
         assertNotNull(bCryptPasswordEncoder);
         assertNotNull(mockMvc);
+        assertNotNull(securityContants);
     }
 
 }
