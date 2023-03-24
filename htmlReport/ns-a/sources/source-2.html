@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > UserRepository</title>
+  <title>Coverage Report > CustomerRepository</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.thatdrw.customerdetailsservice.repository</a>
 </div>
 
-<h1>Coverage Summary for Class: UserRepository (com.thatdrw.customerdetailsservice.repository)</h1>
+<h1>Coverage Summary for Class: CustomerRepository (com.thatdrw.customerdetailsservice.repository)</h1>
 
 <table class="coverageStats">
 
@@ -29,13 +29,13 @@ Current scope:     <a href="../../index.html">all classes</a>
   <th class="name">Class</th>
 </tr>
   <tr>
-    <td class="name">UserRepository$MockitoMock$mxhHQAkX</td>
+    <td class="name">CustomerRepository$MockitoMock$NfTPGHxF</td>
   </tr>
   <tr>
-    <td class="name">UserRepository$MockitoMock$mxhHQAkX$auxiliary$gPhcDrX0</td>
+    <td class="name">CustomerRepository$MockitoMock$NfTPGHxF$auxiliary$jvB4I6gt</td>
   </tr>
   <tr>
-    <td class="name">UserRepository$MockitoMock$mxhHQAkX$auxiliary$jtTbL0dx</td>
+    <td class="name">CustomerRepository$MockitoMock$NfTPGHxF$auxiliary$QyUWkYKo</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -49,15 +49,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.thatdrw.customerdetailsservice.repository;
 &nbsp;
+&nbsp;import java.util.List;
 &nbsp;import java.util.Optional;
 &nbsp;
 &nbsp;import org.springframework.data.repository.CrudRepository;
 &nbsp;
-&nbsp;import com.thatdrw.customerdetailsservice.entity.User;
+&nbsp;import com.thatdrw.customerdetailsservice.entity.Customer;
 &nbsp;
-&nbsp;public interface UserRepository extends CrudRepository&lt;User, Long&gt; {
-&nbsp;	 Optional&lt;User&gt; findByUsername(String username);
-&nbsp;	// boolean existsByUsername(String username);
+&nbsp;public interface CustomerRepository extends CrudRepository&lt;Customer, Long&gt; {
+&nbsp;    Optional&lt;List&lt;Customer&gt;&gt; findByFirstNameContainsOrLastNameContains(String firstName, String lastName);
 &nbsp;}
 </code>
 </pre>
@@ -82,7 +82,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-24 16:54</div>
+    <div style="float:right;">generated on 2023-03-24 17:33</div>
 </div>
 </body>
 </html>

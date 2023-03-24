@@ -43,7 +43,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (6/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -51,12 +51,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (6/6)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">User$HibernateProxy$MBvzFMZM</td>
+    <td class="name">User$HibernateProxy$EecjHkpl</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -65,7 +65,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (6/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -73,7 +73,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (6/6)
   </span>
 </td>
 </tr>
@@ -86,13 +86,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.thatdrw.customerdetailsservice.entity;
 &nbsp;
-&nbsp;import javax.persistence.Column;
-&nbsp;import javax.persistence.Entity;
-&nbsp;import javax.persistence.GeneratedValue;
-&nbsp;import javax.persistence.GenerationType;
-&nbsp;import javax.persistence.Id;
-&nbsp;import javax.persistence.Table;
-&nbsp;import javax.validation.constraints.NotBlank;
+&nbsp;import jakarta.persistence.Column;
+&nbsp;import jakarta.persistence.Entity;
+&nbsp;import jakarta.persistence.GeneratedValue;
+&nbsp;import jakarta.persistence.GenerationType;
+&nbsp;import jakarta.persistence.Id;
+&nbsp;import jakarta.persistence.Table;
+&nbsp;import jakarta.validation.constraints.NotBlank;
 &nbsp;
 &nbsp;import lombok.Getter;
 &nbsp;import lombok.NoArgsConstructor;
@@ -106,7 +106,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp; * &#39;user&#39; is a reserved keyword in SQL, so we name our table users. If you name it user, you will get a org.h2.jdbc.JdbcSQLSyntaxErrorException. 
 &nbsp; *  See https://docs.microsoft.com/en-us/sql/t-sql/language-elements/reserved-keywords-transact-sql?view=sql-server-ver16 for a list of reserved keywords.
 &nbsp; */
-<b class="fc">&nbsp;@Getter</b>
+&nbsp;@Getter
 <b class="fc">&nbsp;@Setter</b>
 <b class="fc">&nbsp;@RequiredArgsConstructor</b>
 <b class="fc">&nbsp;@NoArgsConstructor</b>
@@ -114,17 +114,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @Id
 &nbsp;	@GeneratedValue(strategy = GenerationType.IDENTITY)
-&nbsp;	private long id;
+<b class="fc">&nbsp;	private long id;</b>
 &nbsp;
 &nbsp;	@NotBlank(message =  &quot;username cannot be blank&quot;)
 &nbsp;	@NonNull
 &nbsp;	@Column(nullable = false, unique = true)
-&nbsp;	private String username;
+<b class="fc">&nbsp;	private String username;</b>
 &nbsp;
 &nbsp;	@NotBlank(message =  &quot;password cannot be blank&quot;)
 &nbsp;    @NonNull
 &nbsp;	@Column(nullable = false)
-&nbsp;	private String password;
+<b class="fc">&nbsp;	private String password;</b>
 &nbsp;
 &nbsp;
 &nbsp;
@@ -152,7 +152,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-24 16:54</div>
+    <div style="float:right;">generated on 2023-03-24 17:33</div>
 </div>
 </body>
 </html>
