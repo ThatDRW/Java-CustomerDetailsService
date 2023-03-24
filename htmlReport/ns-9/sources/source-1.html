@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    16,7%
+    100%
   </span>
   <span class="absValue">
-    (1/6)
+    (6/6)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    12,5%
+    100%
   </span>
   <span class="absValue">
-    (1/8)
+    (8/8)
   </span>
 </td>
 </tr>
@@ -110,7 +110,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @ApiResponse(responseCode = &quot;403&quot;, description = &quot;Operation requires Auth.&quot;)
 &nbsp;    @PostMapping
 &nbsp;    public ResponseEntity&lt;Customer&gt; saveCustomer(@Valid @RequestBody Customer customer) {
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.saveCustomer(customer), HttpStatus.CREATED);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.saveCustomer(customer), HttpStatus.CREATED);</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    @Operation(summary = &quot;Find all customers&quot;, description = &quot;Retrieve list of all customers.&quot;)
@@ -119,7 +119,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @ApiResponse(responseCode = &quot;404&quot;, description = &quot;No customers not found.&quot;)
 &nbsp;    @GetMapping(&quot;/all&quot;)
 &nbsp;    public ResponseEntity&lt;List&lt;Customer&gt;&gt; getCustomers() {
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.getCustomers(), HttpStatus.OK);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.getCustomers(), HttpStatus.OK);</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    @Operation(summary = &quot;Find customer by id&quot;, description = &quot;Retrieve customer details by id.&quot;)
@@ -128,7 +128,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Customer not found.&quot;)
 &nbsp;    @GetMapping(&quot;/{id}&quot;)
 &nbsp;    public ResponseEntity&lt;Customer&gt; getCustomer(@PathVariable Long id) {
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.getCustomer(id), HttpStatus.OK);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.getCustomer(id), HttpStatus.OK);</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    @Operation(summary = &quot;Find customer by name&quot;, description = &quot;Retrieve customer(s) details containing the query in name. Case sensitive.&quot;)
@@ -137,18 +137,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Customer not found.&quot;)
 &nbsp;    @GetMapping(&quot;/find/{query}&quot;)
 &nbsp;    public ResponseEntity&lt;List&lt;Customer&gt;&gt; findCustomer(@PathVariable String query) {
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.findCustomer(query), HttpStatus.OK);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.findCustomer(query), HttpStatus.OK);</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    @Operation(summary = &quot;Update customer address&quot;, description = &quot;Update customer address with new address provided in body.&quot;)
-&nbsp;    @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Customer address updated succesfully.&quot;, content = @Content(array = @ArraySchema(schema = @Schema(implementation = Customer.class))))
+&nbsp;    @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Customer address updated succesfully.&quot;, content = @Content(array = @ArraySchema(schema = @Schema(implementation = Customer.class))))
 &nbsp;    @ApiResponse(responseCode = &quot;403&quot;, description = &quot;Operation requires Auth.&quot;)
 &nbsp;    @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Customer not found.&quot;)
 &nbsp;    @PostMapping(&quot;/{id}/updateAddress&quot;)
 &nbsp;    public ResponseEntity&lt;Customer&gt; updateAddress(@PathVariable Long id, @RequestBody String address) {
-<b class="nc">&nbsp;        Customer customer = customerService.getCustomer(id);</b>
-<b class="nc">&nbsp;        customer.setAddress(address);</b>
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.saveCustomer(customer), HttpStatus.CREATED);</b>
+<b class="fc">&nbsp;        Customer customer = customerService.getCustomer(id);</b>
+<b class="fc">&nbsp;        customer.setAddress(address);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(customerService.saveCustomer(customer), HttpStatus.CREATED);</b>
 &nbsp;    }
 &nbsp;}
 </code>
@@ -174,7 +174,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-23 11:57</div>
+    <div style="float:right;">generated on 2023-03-24 16:54</div>
 </div>
 </body>
 </html>

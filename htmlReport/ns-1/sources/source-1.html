@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    20%
+    80%
   </span>
   <span class="absValue">
-    (1/5)
+    (4/5)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    10%
+    70%
   </span>
   <span class="absValue">
-    (1/10)
+    (7/10)
   </span>
 </td>
 </tr>
@@ -95,29 +95,26 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 &nbsp;import com.thatdrw.customerdetailsservice.exception.ErrorResponse;
-&nbsp;// import com.thatdrw.customerdetailsservice.exception.GradeNotFoundException;
-&nbsp;// import com.thatdrw.customerdetailsservice.exception.StudentNotEnrolledException;
-&nbsp;
 &nbsp;
 &nbsp;@ControllerAdvice
 <b class="fc">&nbsp;public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {</b>
 &nbsp;
-&nbsp;    @ExceptionHandler({EntityNotFoundException.class}) //  GradeNotFoundException.class, StudentNotEnrolledException.class)
+&nbsp;    @ExceptionHandler({EntityNotFoundException.class})
 &nbsp;    public ResponseEntity&lt;Object&gt; handleResourceNotFoundException(RuntimeException ex) {
-<b class="nc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));  </b>
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.NOT_FOUND);</b>
+<b class="fc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));  </b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.NOT_FOUND);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @ExceptionHandler(EmptyResultDataAccessException.class)
 &nbsp;    public ResponseEntity&lt;Object&gt; handleDataAccessException(EmptyResultDataAccessException ex) {
-<b class="nc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(&quot;Cannot delete non-existing resource&quot;));  </b>
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.NOT_FOUND);</b>
+<b class="fc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(&quot;Cannot delete non-existing resource&quot;));  </b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.NOT_FOUND);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @ExceptionHandler(DataIntegrityViolationException.class)
 &nbsp;    public ResponseEntity&lt;Object&gt; handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
-<b class="nc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(&quot;Data Integrity Violation: we cannot process your request.&quot;));  </b>
-<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.BAD_REQUEST);</b>
+<b class="fc">&nbsp;        ErrorResponse error = new ErrorResponse(Arrays.asList(&quot;Data Integrity Violation: we cannot process your request.&quot;));  </b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(error, HttpStatus.BAD_REQUEST);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
@@ -151,7 +148,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-23 11:57</div>
+    <div style="float:right;">generated on 2023-03-24 16:54</div>
 </div>
 </body>
 </html>

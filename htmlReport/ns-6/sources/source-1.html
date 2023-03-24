@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25%
+    100%
   </span>
   <span class="absValue">
-    (1/4)
+    (4/4)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    7,1%
+    100%
   </span>
   <span class="absValue">
-    (1/14)
+    (14/14)
   </span>
 </td>
 </tr>
@@ -110,28 +110,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 &nbsp;            throws AuthenticationException {
 &nbsp;        try {
-<b class="nc">&nbsp;            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);</b>
-<b class="nc">&nbsp;            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());</b>
-<b class="nc">&nbsp;            return authenticationManager.authenticate(authentication);</b>
-<b class="nc">&nbsp;        } catch (IOException e) {</b>
-<b class="nc">&nbsp;            throw new RuntimeException();</b>
+<b class="fc">&nbsp;            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);</b>
+<b class="fc">&nbsp;            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());</b>
+<b class="fc">&nbsp;            return authenticationManager.authenticate(authentication);</b>
+<b class="fc">&nbsp;        } catch (IOException e) {</b>
+<b class="fc">&nbsp;            throw new RuntimeException();</b>
 &nbsp;        } 
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-<b class="nc">&nbsp;        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);</b>
-<b class="nc">&nbsp;        response.getWriter().write(failed.getMessage());</b>
-<b class="nc">&nbsp;        response.getWriter().flush();</b>
+<b class="fc">&nbsp;        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);</b>
+<b class="fc">&nbsp;        response.getWriter().write(failed.getMessage());</b>
+<b class="fc">&nbsp;        response.getWriter().flush();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-<b class="nc">&nbsp;        String token = JWT.create()</b>
-<b class="nc">&nbsp;            .withSubject(authResult.getName())</b>
-<b class="nc">&nbsp;            .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION))</b>
-<b class="nc">&nbsp;            .sign(Algorithm.HMAC512(SecurityConstants.SECRET_KEY));</b>
-<b class="nc">&nbsp;        response.addHeader(SecurityConstants.AUTHORIZATION, SecurityConstants.BEARER + token);</b>
+<b class="fc">&nbsp;        String token = JWT.create()</b>
+<b class="fc">&nbsp;            .withSubject(authResult.getName())</b>
+<b class="fc">&nbsp;            .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION))</b>
+<b class="fc">&nbsp;            .sign(Algorithm.HMAC512(SecurityConstants.SECRET_KEY));</b>
+<b class="fc">&nbsp;        response.addHeader(SecurityConstants.AUTHORIZATION, SecurityConstants.BEARER + token);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;
@@ -159,7 +159,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-23 11:57</div>
+    <div style="float:right;">generated on 2023-03-24 16:54</div>
 </div>
 </body>
 </html>

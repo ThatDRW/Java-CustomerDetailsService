@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    33,3%
+    100%
   </span>
   <span class="absValue">
-    (1/3)
+    (3/3)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25%
+    100%
   </span>
   <span class="absValue">
-    (1/4)
+    (4/4)
   </span>
 </td>
 </tr>
@@ -111,16 +111,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Customer not found.&quot;)
 &nbsp;    @GetMapping(&quot;/{id}&quot;)
 &nbsp;	public ResponseEntity&lt;String&gt; findById(@PathVariable Long id) {
-<b class="nc">&nbsp;		return new ResponseEntity&lt;&gt;(userService.getUser(id).getUsername(), HttpStatus.OK);</b>
+<b class="fc">&nbsp;		return new ResponseEntity&lt;&gt;(userService.getUser(id).getUsername(), HttpStatus.OK);</b>
 &nbsp;	}
 &nbsp;
 &nbsp;
 &nbsp;    @Operation(summary = &quot;Register new user&quot;, description = &quot;Register a new user.&quot;)
 &nbsp;    @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Succesful creation on new user account.&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Bad Request - user not valid user.&quot;)
 &nbsp;    @PostMapping(&quot;/register&quot;)
-&nbsp;	public ResponseEntity&lt;HttpStatus&gt; createUser(@Valid @RequestBody User user) {
-<b class="nc">&nbsp;		userService.saveUser(user);</b>
-<b class="nc">&nbsp;		return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</b>
+&nbsp;    public ResponseEntity&lt;HttpStatus&gt; createUser(@Valid @RequestBody User user) {
+<b class="fc">&nbsp;		userService.saveUser(user);</b>
+<b class="fc">&nbsp;		return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</b>
 &nbsp;	}
 &nbsp;
 &nbsp;}
@@ -147,7 +148,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-23 11:57</div>
+    <div style="float:right;">generated on 2023-03-24 16:54</div>
 </div>
 </body>
 </html>

@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    50%
+    100%
   </span>
   <span class="absValue">
-    (1/2)
+    (2/2)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    20%
+    100%
   </span>
   <span class="absValue">
-    (1/5)
+    (5/5)
   </span>
 </td>
 </tr>
@@ -99,12 +99,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-<b class="nc">&nbsp;        User user = userServiceImpl.getUser(authentication.getName());</b>
-<b class="nc">&nbsp;        if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {</b>
-<b class="nc">&nbsp;            throw new BadCredentialsException(&quot;You provided an incorrect password.&quot;);</b>
+<b class="fc">&nbsp;        User user = userServiceImpl.getUser(authentication.getName());</b>
+<b class="fc">&nbsp;        if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {</b>
+<b class="fc">&nbsp;            throw new BadCredentialsException(&quot;You provided an incorrect password.&quot;);</b>
 &nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;        return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword());</b>
+<b class="fc">&nbsp;        return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword());</b>
 &nbsp;    }
 &nbsp;}
 </code>
@@ -130,7 +130,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-23 11:57</div>
+    <div style="float:right;">generated on 2023-03-24 16:54</div>
 </div>
 </body>
 </html>
