@@ -25,7 +25,7 @@ Our business needs a solution for maintaining customer details and have asked yo
     - [x] Cloud native microservice ready
         - [x] SecurityContants
     - [x] Production ready (unit test and code compliancy should be there)
-        - [x] 97.3% Line Coverage on Unit and Integration Tests
+        - [x] 99.3% Line Coverage on Unit and Integration Tests
     - [x] Persistence in a SQL DB (in memory DB will do for the assignment) (e.g. H2 in memory or dockerized Postgres)
     - [x] The project must be stored in GIT on either Github or Gitlab and must be made accessible (this is for understanding git related stuff)
 
