@@ -1,9 +1,9 @@
 package com.thatdrw.customerdetailsservice.entity;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "customers")

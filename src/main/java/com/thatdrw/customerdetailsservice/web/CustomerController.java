@@ -1,6 +1,6 @@
 package com.thatdrw.customerdetailsservice.web;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
