@@ -42,6 +42,7 @@ public class UserController {
     @Operation(summary = "Register new user", description = "Register a new user.")
     @ApiResponse(responseCode = "201", description = "Succesful creation on new user account.")
     @ApiResponse(responseCode = "400", description = "Bad Request - user not valid user.")
+    @PostMapping("/register")
     public ResponseEntity<HttpStatus> createUser(@Valid @RequestBody User user) {
 		userService.saveUser(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
