@@ -32,11 +32,12 @@ public class SecurityConfig {
                         .requestMatchers(antMatcher("/swagger-ui/**")).permitAll() // New Line: allows us to access the swagger-ui API documentation UI without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /swagger-ui.
                         .requestMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
                         .anyRequest().authenticated()
-        )
+                     )
                 .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
                 .addFilter(authenticationFilter)
                 .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                
         http.headers(headers -> headers.frameOptions().disable());
         http.csrf().disable();
 
