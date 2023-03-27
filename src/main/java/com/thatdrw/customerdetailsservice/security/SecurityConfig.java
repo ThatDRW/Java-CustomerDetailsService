@@ -5,9 +5,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
+import java.util.Arrays;
 
 import com.thatdrw.customerdetailsservice.security.filter.AuthenticationFilter;
 import com.thatdrw.customerdetailsservice.security.filter.ExceptionHandlerFilter;
@@ -26,9 +31,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+
+
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/authenticate");
-        http.cors(withDefaults())
+
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((authz) -> authz
                                 .requestMatchers(antMatcher("/h2/**")).permitAll()
                                 .requestMatchers(antMatcher("/v3/**")).permitAll() // New Line: allows us to access the v3 API documentation without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /v3.
@@ -44,22 +53,19 @@ public class SecurityConfig {
         http.headers(headers -> headers.frameOptions().disable());
         http.csrf().disable();
 
-        // http        
-        //     .headers().frameOptions().disable() // New Line: the h2 console runs on a "frame". By default, Spring Security prevents rendering within an iframe. This line disables its prevention.
-        //     .and()
-        //     .csrf().disable()
-        //     .authorizeHttpRequests()  
-        //     .requestMatchers(HttpMethod.GET, "/v3/**").permitAll() // New Line: allows us to access the v3 API documentation without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /v3.
-        //     .requestMatchers("/swagger-ui/**").permitAll() // New Line: allows us to access the swagger-ui API documentation UI without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /swagger-ui.
-        //     .requestMatchers(HttpMethod.GET, "/h2/**").permitAll() // New Line: allows us to access the h2 console without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /h2.
-        //     .requestMatchers(HttpMethod.POST, "/h2/**").permitAll() // New Line: allows us to access the h2 console without the need to authenticate. ' ** '  instead of ' * ' because multiple path levels will follow /h2.
-        //     .requestMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
-        //     .anyRequest().authenticated()
-        //     .and()
-        //     .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
-        //     .addFilter(authenticationFilter)
-        //     .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
-        //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
+    }
+
+    CorsConfigurationSource corsConfigurationSource() {
+        final var configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setExposedHeaders(Arrays.asList("*"));
+
+        final var source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
     }
 }
