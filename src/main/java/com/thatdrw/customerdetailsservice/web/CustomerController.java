@@ -74,6 +74,6 @@ public class CustomerController {
     public ResponseEntity<Customer> updateAddress(@PathVariable Long id, @RequestBody String address) {
         Customer customer = customerService.getCustomer(id);
         customer.setAddress(address);
-        return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED); // TODO : OK
     }
 }
