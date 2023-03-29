@@ -27,7 +27,11 @@ public class CustomerdetailsserviceApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Customer[] customers = new Customer[] {
 			new Customer("Josh", "Doe", 22, "12 AppleStreet, 15555 ThatVille"),
-			new Customer("Miles", "Doe", 48, "12 AppleStreet, 15555 ThatVille"),
+			new Customer("Jerry", "Doe", 48, "12 AppleStreet, 15555 ThatVille"),
+			new Customer("Sonic", "Hedgehog, the", 15, "Sonic Drive 64, Christmas Island"),
+			new Customer("Miles Tails", "Prower", 8, "66 Main Rd., West Side Island"),
+			new Customer("Amy", "Rose", 12, "Unknown"),
+			new Customer("Shadow", "Hegdehog, the", 48, "Unknown, Space Colony ARK"),
 		};
 
 		for (Customer c: customers) {
