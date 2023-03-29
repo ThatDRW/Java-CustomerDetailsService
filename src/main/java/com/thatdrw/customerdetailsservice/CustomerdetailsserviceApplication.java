@@ -31,7 +31,7 @@ public class CustomerdetailsserviceApplication implements CommandLineRunner {
 			new Customer("Sonic", "Hedgehog, the", 15, "Sonic Drive 64, Christmas Island"),
 			new Customer("Miles Tails", "Prower", 8, "66 Main Rd., West Side Island"),
 			new Customer("Amy", "Rose", 12, "Unknown"),
-			new Customer("Shadow", "Hegdehog, the", 48, "Unknown, Space Colony ARK"),
+			new Customer("Shadow", "Hedgehog, the", 15, "Space Colony ARK"),
 		};
 
 		for (Customer c: customers) {
