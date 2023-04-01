@@ -55,7 +55,7 @@ public class AddressNL_HouseNumberTest {
 
     @Test
     public void OnlyInvalidHouseNumberTest() {
-        String[] houseNumbers = {"a123a","afh","x&$","12.2","11,3"};
+        String[] houseNumbers = {"a123a","afh","x&$","","11,3"};
 
         for (String houseNumber: houseNumbers) {
             address.setHouseNumber(houseNumber);
