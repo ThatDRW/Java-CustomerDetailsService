@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.service.CustomerService;
 
@@ -71,7 +72,7 @@ public class CustomerController {
     @ApiResponse(responseCode = "403", description = "Operation requires Auth.")
     @ApiResponse(responseCode = "404", description = "Customer not found.")
     @PostMapping("/{id}/updateAddress")
-    public ResponseEntity<Customer> updateAddress(@PathVariable Long id, @RequestBody String address) {
+    public ResponseEntity<Customer> updateAddress(@PathVariable Long id, @RequestBody Address address) {
         Customer customer = customerService.getCustomer(id);
         customer.setAddress(address);
         return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED); // TODO : OK
