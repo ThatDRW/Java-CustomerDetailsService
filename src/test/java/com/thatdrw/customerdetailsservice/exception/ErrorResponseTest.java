@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice.unit;
+package com.thatdrw.customerdetailsservice.exception;
 
 import static org.junit.Assert.assertEquals;
 

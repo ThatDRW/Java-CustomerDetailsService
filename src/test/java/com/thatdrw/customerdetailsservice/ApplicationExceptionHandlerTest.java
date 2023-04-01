@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice.unit;
+package com.thatdrw.customerdetailsservice;
 
 import java.util.Arrays;
 
