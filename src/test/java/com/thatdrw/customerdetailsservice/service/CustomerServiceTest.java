@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
@@ -29,10 +31,21 @@ public class CustomerServiceTest {
     @InjectMocks
     private CustomerServiceImpl customerService;
 
+    private Address address;
+
+    @Before
+    public void setUp() {
+        address = new Address();
+        address.setStreetName("TestingStreet");
+		address.setHouseNumber("1233");
+		address.setZipCode("1234AB");
+		address.setCity("ThatVille");
+    }
+
     @Test
     public void getCustomersFromRepoTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
+        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"), address);
         List<Customer> customerlist = Arrays.asList(customer, customer2);
         when(customerRepository.findAll()).thenReturn(customerlist);
         
@@ -43,8 +56,8 @@ public class CustomerServiceTest {
     
     @Test
     public void getSetCustomerFieldsTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
-        Customer customer1 = new Customer("please","over",new Date("Dec 31, 1999"),"write");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
+        Customer customer1 = new Customer("please","over",new Date("Dec 31, 1999"), address);
 
         customer1.setFirstName(customer.getFirstName());
         customer1.setLastName(customer.getLastName());
@@ -54,8 +67,8 @@ public class CustomerServiceTest {
     
     @Test
     public void findByFirstOrLastNameContainsTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
+        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"), address);
         when(customerRepository.findByFirstNameContainsOrLastNameContains("last", "last")).thenReturn(Optional.of(Arrays.asList(customer, customer2)));
         
         List<Customer> result = customerService.findCustomer("last");
@@ -84,7 +97,7 @@ public class CustomerServiceTest {
     //Find by valid id
     @Test
     public void findByValidId() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
 
         Customer result = customerService.getCustomer(1L);
@@ -95,21 +108,21 @@ public class CustomerServiceTest {
     //Update customer address
     @Test
     public void updateCustomerAddressTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
-        Customer updatedcustomer = new Customer("first","last",new Date("Jan 01, 1971"),"updated address");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
+        Customer updatedcustomer = new Customer("first","last",new Date("Jan 01, 1971"), address);
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
         when(customerRepository.save(customer)).thenReturn(updatedcustomer);
 
-        Customer result = customerService.updateCustomerAddress(1L, "updated address");
+        Customer result = customerService.updateCustomerAddress(1L, address);
 
-        assertEquals("updated address", result.getAddress());
+        assertEquals(address, result.getAddress());
     }
 
 
     //Unwrap customer
     @Test
     public void unwrapCustomerTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
         Optional<Customer> optcustomer = Optional.of(customer);
         Optional<Customer> emptyOptCustomer = Optional.empty();
 
@@ -123,8 +136,8 @@ public class CustomerServiceTest {
 
     @Test
     public void unwrapCustomerListTest() {
-        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"), address);
+        Customer customer2 = new Customer("first","last",new Date("Jan 01, 1971"), address);
         List<Customer> customerlist = Arrays.asList(customer, customer2);
 
         Optional<List<Customer>> optcustomer = Optional.of(customerlist);

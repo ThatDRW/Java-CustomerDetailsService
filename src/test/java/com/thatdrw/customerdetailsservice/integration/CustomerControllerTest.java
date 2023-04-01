@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.web.CustomerController;
 import com.thatdrw.customerdetailsservice.web.UserController;
@@ -56,7 +57,13 @@ public class CustomerControllerTest {
 
     
     public String generateCustomerJson() throws Exception {
-        Customer customer = new Customer("first","last", new Date("Feb 21, 1995"),"123 Test St. 1234 Utrecht");
+        Address address = new Address();
+        address.setStreetName("TestingStreet");
+		address.setHouseNumber("1233");
+		address.setZipCode("1234AB");
+		address.setCity("ThatVille");
+
+        Customer customer = new Customer("first","last", new Date("Feb 21, 1995"), address);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);

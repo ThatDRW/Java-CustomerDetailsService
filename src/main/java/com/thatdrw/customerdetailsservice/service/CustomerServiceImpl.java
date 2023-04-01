@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
@@ -48,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public Customer updateCustomerAddress(Long id, String address) {
+    public Customer updateCustomerAddress(Long id, Address address) {
         Customer customer = getCustomer(id);
         customer.setAddress(address);
         return saveCustomer(customer);

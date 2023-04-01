@@ -1,6 +1,8 @@
 package com.thatdrw.customerdetailsservice.service;
 
 import java.util.List;
+
+import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 
 /*  - [ ] Add a new customer
@@ -19,5 +21,5 @@ public interface CustomerService {
     
     List<Customer> findCustomer(String query);
 
-    Customer updateCustomerAddress(Long id, String address);
+    Customer updateCustomerAddress(Long id, Address address);
 }
