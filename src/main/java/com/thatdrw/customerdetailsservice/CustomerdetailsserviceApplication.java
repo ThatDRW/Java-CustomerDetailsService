@@ -28,12 +28,12 @@ public class CustomerdetailsserviceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Customer[] customers = new Customer[] {
-			new Customer("Josh", "Doe", new Date(01,01,2000), "12 AppleStreet, 15555 ThatVille"),
-			new Customer("Jerry", "Doe", new Date(01,01,2000), "12 AppleStreet, 15555 ThatVille"),
-			new Customer("Sonic", "Hedgehog, the", new Date(01,01,2000), "Sonic Drive 64, Christmas Island"),
-			new Customer("Miles Tails", "Prower", new Date(01,01,2000), "66 Main Rd., West Side Island"),
-			new Customer("Amy", "Rose", new Date(01,01,2000), "Unknown"),
-			new Customer("Shadow", "Hedgehog, the", new Date(01,01,2000), "Space Colony ARK"),
+			new Customer("Josh", "Doe", new Date("Jan 21, 2000"), "12 AppleStreet, 15555 ThatVille"),
+			new Customer("Jerry", "Doe", new Date("Feb 12, 1985"), "12 AppleStreet, 15555 ThatVille"),
+			new Customer("Sonic", "Hedgehog, the", new Date("Aug 9, 1967"), "Sonic Drive 64, Christmas Island"),
+			new Customer("Miles Tails", "Prower", new Date("Jun 14, 1985"), "66 Main Rd., West Side Island"),
+			new Customer("Amy", "Rose", new Date("Dec 30, 1999"), "Unknown"),
+			new Customer("Shadow", "Hedgehog, the", new Date("May 21, 1006"), "Space Colony ARK"),
 		};
 
 		for (Customer c: customers) {
