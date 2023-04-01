@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +29,10 @@ public class CustomerServiceTest {
     @InjectMocks
     private CustomerServiceImpl customerService;
 
-    /* TODO : Fix Test Cases. 
-     * 
     @Test
     public void getCustomersFromRepoTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("second","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
         List<Customer> customerlist = Arrays.asList(customer, customer2);
         when(customerRepository.findAll()).thenReturn(customerlist);
         
@@ -44,19 +43,19 @@ public class CustomerServiceTest {
     
     @Test
     public void getSetCustomerFieldsTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
-        Customer customer1 = new Customer("please","over",1,"write");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer1 = new Customer("please","over",new Date("Dec 31, 1999"),"write");
 
         customer1.setFirstName(customer.getFirstName());
         customer1.setLastName(customer.getLastName());
-        customer1.setAge(customer.getAge());
+        customer1.setDateOfBirth(customer.getDateOfBirth());
         customer1.setAddress(customer.getAddress());
     }
     
     @Test
     public void findByFirstOrLastNameContainsTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("second","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer2 = new Customer("second","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
         when(customerRepository.findByFirstNameContainsOrLastNameContains("last", "last")).thenReturn(Optional.of(Arrays.asList(customer, customer2)));
         
         List<Customer> result = customerService.findCustomer("last");
@@ -72,7 +71,6 @@ public class CustomerServiceTest {
         
         assertEquals("The customer with id '-1' does not exist in our records", thrown.getMessage());
     }
-    */
 
     @Test
     public void findByInvalidIdTest() {
@@ -83,12 +81,10 @@ public class CustomerServiceTest {
         assertEquals("The customer with id '123' does not exist in our records", thrown.getMessage());
     }
     
-    /* TODO : Fix Test Cases.
-     * 
     //Find by valid id
     @Test
     public void findByValidId() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
 
         Customer result = customerService.getCustomer(1L);
@@ -99,8 +95,8 @@ public class CustomerServiceTest {
     //Update customer address
     @Test
     public void updateCustomerAddressTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
-        Customer updatedcustomer = new Customer("first","last",22,"updated address");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer updatedcustomer = new Customer("first","last",new Date("Jan 01, 1971"),"updated address");
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
         when(customerRepository.save(customer)).thenReturn(updatedcustomer);
 
@@ -113,7 +109,7 @@ public class CustomerServiceTest {
     //Unwrap customer
     @Test
     public void unwrapCustomerTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
         Optional<Customer> optcustomer = Optional.of(customer);
         Optional<Customer> emptyOptCustomer = Optional.empty();
 
@@ -127,8 +123,8 @@ public class CustomerServiceTest {
 
     @Test
     public void unwrapCustomerListTest() {
-        Customer customer = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
-        Customer customer2 = new Customer("first","last",22,"12 abcstreet, 1234ab abdam");
+        Customer customer = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
+        Customer customer2 = new Customer("first","last",new Date("Jan 01, 1971"),"12 abcstreet, 1234ab abdam");
         List<Customer> customerlist = Arrays.asList(customer, customer2);
 
         Optional<List<Customer>> optcustomer = Optional.of(customerlist);
@@ -141,8 +137,6 @@ public class CustomerServiceTest {
         });
 
     }
-
-    */
 
 }    
 

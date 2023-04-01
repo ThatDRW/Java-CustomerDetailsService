@@ -15,6 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Date;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -50,18 +53,17 @@ public class CustomerControllerTest {
         assertNotNull(mockMvc);
     }
 
-    /* TODO : Fix Test Cases
-     * 
-     public String generateCustomerJson() throws Exception {
-         Customer customer = new Customer("first","last",22,"123 Test St. 1234 Utrecht");
-         
-         ObjectMapper mapper = new ObjectMapper();
-         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-         ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
-         
-         return writer.writeValueAsString(customer);
-        }
     
+    public String generateCustomerJson() throws Exception {
+        Customer customer = new Customer("first","last", new Date("Feb 21, 1995"),"123 Test St. 1234 Utrecht");
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
+
+        return writer.writeValueAsString(customer);
+    }
+
     public void addMockCustomerToRepo() throws Exception {
         String json = generateCustomerJson();
 
@@ -159,5 +161,5 @@ public class CustomerControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.address").value(newAddress));
     }
-     */
+    
 }
