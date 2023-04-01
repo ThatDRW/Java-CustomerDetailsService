@@ -1,6 +1,8 @@
 package com.thatdrw.customerdetailsservice.entity;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -13,6 +15,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,9 +49,10 @@ public class Customer {
     @Column(name = "date_of_birth", nullable = false)
     private Date dateOfBirth;
 
-    @NotBlank(message = "Address cannot be blank.")
+    // @NotBlank(message = "Address cannot be blank.")
     @NonNull
-    @Column(name = "address", nullable = false)
-    private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
 }
