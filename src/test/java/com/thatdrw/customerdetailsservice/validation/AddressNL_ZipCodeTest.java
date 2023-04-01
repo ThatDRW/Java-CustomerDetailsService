@@ -28,11 +28,7 @@ public class AddressNL_ZipCodeTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-        address = new Address();
-        address.setStreetName("Test Street");
-        address.setHouseNumber("1234");
-        address.setZipCode("1234AB");
-        address.setCity("ThatVille");
+        address = new Address("Test Street", "1234", "1234AB", "ThatVille");
     }
 
     @Test
@@ -43,10 +39,6 @@ public class AddressNL_ZipCodeTest {
             address.setZipCode(zipCode);
     
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
-
-            for (ConstraintViolation<Address> violation: violations) {
-                System.out.println(violation.getMessage());
-            }
 
             assertTrue(violations.isEmpty());
         }
@@ -60,11 +52,7 @@ public class AddressNL_ZipCodeTest {
             address.setZipCode(zipCode);
 
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
-
-            for (ConstraintViolation<Address> violation: violations) {
-                System.out.println(violation.getMessage());
-            }
-            System.out.println(zipCode);
+            
             assertFalse(violations.isEmpty());
         }
     }

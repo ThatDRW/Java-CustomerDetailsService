@@ -28,11 +28,7 @@ public class AddressNL_HouseNumberTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-        address = new Address();
-        address.setStreetName("Test Street");
-        address.setHouseNumber("1234");
-        address.setZipCode("1234AB");
-        address.setCity("ThatVille");
+        address = new Address("Test Street", "1234", "1234AB", "ThatVille");
     }
 
     @Test
@@ -44,11 +40,6 @@ public class AddressNL_HouseNumberTest {
     
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
 
-            for (ConstraintViolation<Address> violation: violations) {
-                System.out.println(violation.getMessage());
-            }
-
-            System.out.println(houseNumber);
             assertTrue(violations.isEmpty());
         }
     }
@@ -62,10 +53,6 @@ public class AddressNL_HouseNumberTest {
 
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
 
-            for (ConstraintViolation<Address> violation: violations) {
-                System.out.println(violation.getMessage());
-            }
-            System.out.println(houseNumber);
             assertFalse(violations.isEmpty());
         }
     }
