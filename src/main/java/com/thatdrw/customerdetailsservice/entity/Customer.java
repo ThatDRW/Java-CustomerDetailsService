@@ -3,6 +3,7 @@ package com.thatdrw.customerdetailsservice.entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.PositiveOrZero;
 
 import lombok.Getter;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,10 +42,10 @@ public class Customer {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @PositiveOrZero(message = "Age has to be 0 or above.")
+    @Past(message = "Date of Birth has to be in the past.")
     @NonNull
-    @Column(name = "age", nullable = false)
-    private Integer age;
+    @Column(name = "date_of_birth", nullable = false)
+    private Date dateOfBirth;
 
     @NotBlank(message = "Address cannot be blank.")
     @NonNull
