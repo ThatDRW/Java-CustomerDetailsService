@@ -37,7 +37,7 @@ public class AddressNL_HouseNumberTest {
 
     @Test
     public void OnlyValidHouseNumberTest() {
-        String[] houseNumbers = {"9001","1234","1","0"};
+        String[] houseNumbers = {"9001","1","192a","12-14", "12/II", "1 apt. 1"};
 
         for (String houseNumber: houseNumbers) {
             address.setHouseNumber(houseNumber);
@@ -48,13 +48,14 @@ public class AddressNL_HouseNumberTest {
                 System.out.println(violation.getMessage());
             }
 
+            System.out.println(houseNumber);
             assertTrue(violations.isEmpty());
         }
     }
 
     @Test
     public void OnlyInvalidHouseNumberTest() {
-        String[] houseNumbers = {"123a","afh","x&$"};
+        String[] houseNumbers = {"a123a","afh","x&$","12.2","11,3"};
 
         for (String houseNumber: houseNumbers) {
             address.setHouseNumber(houseNumber);
@@ -64,7 +65,7 @@ public class AddressNL_HouseNumberTest {
             for (ConstraintViolation<Address> violation: violations) {
                 System.out.println(violation.getMessage());
             }
-
+            System.out.println(houseNumber);
             assertFalse(violations.isEmpty());
         }
     }
