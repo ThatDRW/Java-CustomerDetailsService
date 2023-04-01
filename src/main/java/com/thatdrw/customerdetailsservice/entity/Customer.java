@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.PositiveOrZero;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
