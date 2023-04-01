@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "55c5553f-90cd-4265-9e3a-3fbec4a06350",
+		"_postman_id": "74176ba5-ad51-4f23-a184-ca523f778a43",
 		"name": "com.thatdrw.customerdetailsservice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -209,6 +209,34 @@
 			"response": []
 		},
 		{
+			"name": "7.1 Add New Customer (Auth)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Newly Added\",\n    \"lastName\": \"Through API\",\n    \"dateOfBirth\": \"2000-01-01T00:00:00.000+00:00\",\n    \"address\": {\n        \"streetName\": \"TestStreet\",\n        \"houseNumber\": \"1234\",\n        \"zipCode\": \"1234AB\",\n        \"city\": \"ThatVille\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "8. Get Customer By Id [3] (Auth)",
 			"request": {
 				"method": "GET",
@@ -299,6 +327,36 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "11.1 Update Address [1] (Auth) Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"streetName\": \"Postman Street\",\r\n    \"houseNumber\": \"123123\",\r\n    \"zipCode\": \"1234AB\",\r\n    \"city\": \"ThatVille\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer/1/updateAddress",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"1",
+						"updateAddress"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -306,7 +364,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjc5NDg1ODQyfQ.cFyLTIiqXN2JkBrCujtCOfowtnRcYt3KIn6SOSFEs99bFMpoQrl1eMfpB366dNd8qeAkZPifYcpgNfmEgTbU4Q",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjgwMzkyOTQwfQ.aNZOjUMTIcUHnInboHGeWrWfb0b8aBdeu2DeXBjqzkHCom9TlamYqF397h_-9Og34O7Rddrh4PmNEX4D__rjBA",
 				"type": "string"
 			}
 		]
