@@ -1,6 +1,8 @@
 package com.thatdrw.customerdetailsservice;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.boot.CommandLineRunner;
@@ -32,7 +34,8 @@ public class CustomerdetailsserviceApplication implements CommandLineRunner {
 	}
 
 	private Date newDate(String dateString) throws ParseException {
-		return java.text.DateFormat.getDateInstance().parse(dateString);
+		DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+		return format.parse(dateString);
 	}
 
 	@Override

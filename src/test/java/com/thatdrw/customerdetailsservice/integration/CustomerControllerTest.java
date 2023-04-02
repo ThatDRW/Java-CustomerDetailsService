@@ -17,7 +17,9 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -57,7 +59,8 @@ public class CustomerControllerTest {
     }
 
     private Date newDate(String dateString) throws ParseException {
-		return java.text.DateFormat.getDateInstance().parse(dateString);
+        DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+		return format.parse(dateString);
 	}
     
     public String generateCustomerJson() throws Exception {
