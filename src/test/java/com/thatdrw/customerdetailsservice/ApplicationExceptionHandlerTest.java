@@ -15,13 +15,13 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.thatdrw.customerdetailsservice.ApplicationExceptionHandler;
 import com.thatdrw.customerdetailsservice.exception.ErrorResponse;
 
 @RunWith(SpringRunner.class)
 public class ApplicationExceptionHandlerTest {
 
-    private ApplicationExceptionHandler handler = new ApplicationExceptionHandler();
+    // Strange IntelliSense bug shows unused import if not used directly like this for some reason.
+    private com.thatdrw.customerdetailsservice.ApplicationExceptionHandler handler = new com.thatdrw.customerdetailsservice.ApplicationExceptionHandler();
 
     @Test
     public void handleResourceNotFoundExceptionTest() {
