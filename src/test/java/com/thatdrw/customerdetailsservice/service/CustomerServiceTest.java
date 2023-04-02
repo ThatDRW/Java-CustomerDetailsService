@@ -20,6 +20,7 @@ import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
+import com.thatdrw.customerdetailsservice.service.impl.CustomerServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerServiceTest {
