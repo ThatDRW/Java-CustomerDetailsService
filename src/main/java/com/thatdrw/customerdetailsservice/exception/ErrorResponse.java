@@ -39,10 +39,4 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    public void addMessage(String msg) {
-        System.out.println("Add Message Called with message: " + msg);
-        this.message.addAll(Arrays.asList(msg));
-    }
-
-
 }
