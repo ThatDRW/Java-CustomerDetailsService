@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -36,16 +38,13 @@ public class CustomerServiceTest {
 
     @Before
     public void setUp() {
-        address = new Address();
-        address.setStreetName("TestingStreet");
-		address.setHouseNumber("1233");
-		address.setZipCode("1234AB");
-		address.setCity("ThatVille");
+        address = new Address("TestingStreet","1233","1234AB","ThatVille");
     }
 
     private Date newDate(String dateString) {
         try {
-            return java.text.DateFormat.getDateInstance().parse(dateString);
+            DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+            return format.parse(dateString);
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
