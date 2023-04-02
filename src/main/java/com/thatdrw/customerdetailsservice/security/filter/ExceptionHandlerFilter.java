@@ -25,11 +25,11 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch (EntityNotFoundException e) { //Feel free to create a separate function.
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write(jsonErrorResponse("Username doesn't exist"));
+            response.getWriter().write(jsonErrorResponse("Username does not exist."));
             response.getWriter().flush();
         } catch (JWTVerificationException e) {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.getWriter().write(jsonErrorResponse("JWT NOT VALID"));
+            response.getWriter().write(jsonErrorResponse("Auth Error: Invalid token."));
             response.getWriter().flush();
         } catch (RuntimeException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
