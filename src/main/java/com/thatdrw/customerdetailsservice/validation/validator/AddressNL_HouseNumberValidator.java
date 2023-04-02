@@ -13,6 +13,9 @@ public class AddressNL_HouseNumberValidator implements ConstraintValidator <Addr
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if (value == null) 
+            return false;
+        
         value = value.replace(" ", "");
         boolean isValid = this.houseNumbersPattern.matcher(value).find();
 

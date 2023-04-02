@@ -13,6 +13,9 @@ public class AddressNL_ZipCodeValidator implements ConstraintValidator <AddressN
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if (value == null) 
+            return false;
+    
         value = value.replace(" ","");
         boolean isValidZipcode = this.zipCodePattern.matcher(value).find();
 
