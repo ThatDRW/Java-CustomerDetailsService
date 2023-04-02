@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice.service;
+package com.thatdrw.customerdetailsservice.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,7 @@ import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
+import com.thatdrw.customerdetailsservice.service.CustomerService;
 
 import lombok.AllArgsConstructor;
 

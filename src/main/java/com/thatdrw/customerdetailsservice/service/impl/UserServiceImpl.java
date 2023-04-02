@@ -1,4 +1,4 @@
-package com.thatdrw.customerdetailsservice.service;
+package com.thatdrw.customerdetailsservice.service.impl;
 
 import java.util.Optional;
 
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thatdrw.customerdetailsservice.entity.User;
 import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.UserRepository;
+import com.thatdrw.customerdetailsservice.service.UserService;
 
 import lombok.AllArgsConstructor;
 
