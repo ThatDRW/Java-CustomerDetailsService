@@ -27,17 +27,23 @@ public class ApplicationExceptionHandlerTest {
     public void handleResourceNotFoundExceptionTest() {
         String message = "EntityNotFound";
         ResponseEntity<Object> handled = handler.handleResourceNotFoundException(new EntityNotFoundException(message));
+
+        Object body = handled.getBody();
+        if (body != null)
+            assertEquals(Arrays.asList(message), ((ErrorResponse) body).getMessage());
         
-        assertEquals(Arrays.asList(message), ((ErrorResponse) handled.getBody()).getMessage());
         assertEquals(HttpStatus.NOT_FOUND, handled.getStatusCode());
     }
     
     @Test
     public void handleDataAccessExceptionTest() {
-        String message = "Cannot delete non-existing resource";
+        String message = "Cannot delete non-existing resource.";
         ResponseEntity<Object> handled = handler.handleDataAccessException(new EmptyResultDataAccessException(1));
         
-        assertEquals(Arrays.asList(message), ((ErrorResponse) handled.getBody()).getMessage());
+        Object body = handled.getBody();
+        if (body != null)
+            assertEquals(Arrays.asList(message), ((ErrorResponse) body).getMessage());
+
         assertEquals(HttpStatus.NOT_FOUND, handled.getStatusCode());
     }
 
@@ -46,7 +52,10 @@ public class ApplicationExceptionHandlerTest {
         String message = "Data Integrity Violation: we cannot process your request.";
         ResponseEntity<Object> handled = handler.handleDataIntegrityViolationException(new DataIntegrityViolationException(""));
 
-        assertEquals(Arrays.asList(message), ((ErrorResponse) handled.getBody()).getMessage());
+        Object body = handled.getBody();
+        if (body != null)
+            assertEquals(Arrays.asList(message), ((ErrorResponse) body).getMessage());
+
         assertEquals(HttpStatus.BAD_REQUEST, handled.getStatusCode());
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -55,15 +56,14 @@ public class CustomerControllerTest {
         assertNotNull(mockMvc);
     }
 
+    private Date newDate(String dateString) throws ParseException {
+		return java.text.DateFormat.getDateInstance().parse(dateString);
+	}
     
     public String generateCustomerJson() throws Exception {
-        Address address = new Address();
-        address.setStreetName("TestingStreet");
-		address.setHouseNumber("1233");
-		address.setZipCode("1234AB");
-		address.setCity("ThatVille");
+        Address address = new Address("TestingStreet", "1233", "1234AB", "ThatVille");
 
-        Customer customer = new Customer("first","last", new Date("Feb 21, 1995"), address);
+        Customer customer = new Customer("first","last", newDate("Feb 21, 1995"), address);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
