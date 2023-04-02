@@ -3,7 +3,6 @@ package com.thatdrw.customerdetailsservice.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,7 +68,5 @@ public class CustomerServiceImpl implements CustomerService {
         else
             throw new EntityNotFoundException(id, Customer.class);
     }
-    
-
     
 }
