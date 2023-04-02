@@ -102,12 +102,13 @@
             <scope>test</scope>
         </dependency>
 
-		<!-- REMOVE AFTER MIGRATION -->
+		<!-- REMOVE AFTER MIGRATION 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-properties-migrator</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		-->
 
 		<!-- EXPERIMENTAL -->
 		<dependency>
