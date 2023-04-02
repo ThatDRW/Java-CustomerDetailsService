@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,16 +30,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotBlank(message =  "username cannot be blank")
+	@NotBlank(message =  "Username cannot be blank.")
+	@Size(min = 2, message = "Username has to be at least 2 characters long.")
 	@NonNull
 	@Column(nullable = false, unique = true)
 	private String username;
-
-	@NotBlank(message =  "password cannot be blank")
+	
+	@NotBlank(message =  "Password cannot be blank.")
+	@Size(min = 2, message = "Password has to be at least 2 characters long.")
     @NonNull
 	@Column(nullable = false)
 	private String password;
-
-
 
 }
