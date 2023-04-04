@@ -92,7 +92,7 @@ public class CustomerServiceTest {
             customerService.findCustomer("invalid");
         });
         
-        assertEquals("The customer with id '-1' does not exist in our records", thrown.getMessage());
+        assertEquals("The customer with Id '-1' does not exist in our records.", thrown.getMessage());
     }
 
     @Test
@@ -101,7 +101,7 @@ public class CustomerServiceTest {
             customerService.getCustomer(123L);
         });
         
-        assertEquals("The customer with id '123' does not exist in our records", thrown.getMessage());
+        assertEquals("The customer with Id '123' does not exist in our records.", thrown.getMessage());
     }
     
     //Find by valid id
