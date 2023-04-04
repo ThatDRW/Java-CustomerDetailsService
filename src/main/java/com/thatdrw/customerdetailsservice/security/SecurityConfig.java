@@ -30,8 +30,11 @@ public class SecurityConfig {
 
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
-        http.securityMatcher(SecurityConstants.PERMIT_ALL_ROUTES).authorizeHttpRequests().anyRequest().permitAll();
-
+        http.authorizeHttpRequests((authz) -> authz
+            .requestMatchers(SecurityConstants.PERMIT_ALL_ROUTES).permitAll()
+            .anyRequest().authenticated()
+        );
+        
         http.addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
             .addFilter(authenticationFilter)
             .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
