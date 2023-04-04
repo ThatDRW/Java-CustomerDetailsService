@@ -10,9 +10,10 @@ public class SecurityConstants {
     public static final String AUTHORIZATION = "Authorization"; // "Authorization" : Bearer Token
     
     public static final String REGISTER_PATH = "/user/register"; // Public path that clients can use to register.
+    public static final String LOGIN_PATH = "/user/login";
     public static final String AUTH_PATH = "/authenticate";
     
-    public static final String[] PERMIT_ALL_ROUTES = {"/h2/**", "/v3/**", "/swagger-ui/**", REGISTER_PATH, AUTH_PATH};
+    public static final String[] PERMIT_ALL_ROUTES = {"/h2/**", "/v3/**", "/swagger-ui/**", REGISTER_PATH, LOGIN_PATH};
     
     public static final List<String> CORS_ALLOWED_ORIGINS = Arrays.asList("http://localhost:8080", "http://localhost:4200");
     public static final List<String> CORS_ALLOWED_METHODS = Arrays.asList("GET","POST");
