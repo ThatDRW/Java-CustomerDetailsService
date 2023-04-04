@@ -2,6 +2,7 @@ package com.thatdrw.customerdetailsservice.integration;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,13 @@ public class CustomerControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private String json;
+
+    @Before
+    public void setUp() throws Exception {
+        json = generateCustomerJson();
+    }
+
     @Test
     public void contextLoads() {
         assertNotNull(userController);
@@ -85,8 +93,6 @@ public class CustomerControllerTest {
     }
 
     public void addMockCustomerToRepo() throws Exception {
-        String json = generateCustomerJson();
-
         RequestBuilder request = MockMvcRequestBuilders.post("/customer")
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);
@@ -96,8 +102,6 @@ public class CustomerControllerTest {
 
     @Test
     public void saveCustomerNoJWTAuthTest() throws Exception {
-        String json = generateCustomerJson();
-
         RequestBuilder request = MockMvcRequestBuilders.post("/customer")
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);
@@ -108,8 +112,6 @@ public class CustomerControllerTest {
     @Test
     @WithMockUser
     public void saveCustomerTest() throws Exception {
-        String json = generateCustomerJson();
-
         RequestBuilder request = MockMvcRequestBuilders.post("/customer")
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);

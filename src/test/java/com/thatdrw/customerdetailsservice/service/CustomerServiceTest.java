@@ -35,10 +35,14 @@ public class CustomerServiceTest {
     private CustomerServiceImpl customerService;
 
     private Address address;
+    private Customer customer;
+    private Customer customer2;
 
     @Before
     public void setUp() {
         address = new Address("TestingStreet","1233","1234AB","ThatVille");
+        customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
+        customer2 = new Customer("second","last", newDate("Jan 01, 1971"), address);
     }
 
     private Date newDate(String dateString) {
@@ -54,8 +58,6 @@ public class CustomerServiceTest {
 
     @Test
     public void getCustomersFromRepoTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
-        Customer customer2 = new Customer("second","last", newDate("Jan 01, 1971"), address);
         List<Customer> customerlist = Arrays.asList(customer, customer2);
         when(customerRepository.findAll()).thenReturn(customerlist);
         
@@ -66,19 +68,14 @@ public class CustomerServiceTest {
     
     @Test
     public void getSetCustomerFieldsTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
-        Customer customer1 = new Customer("please","over", newDate("Dec 31, 1999"), address);
-
-        customer1.setFirstName(customer.getFirstName());
-        customer1.setLastName(customer.getLastName());
-        customer1.setDateOfBirth(customer.getDateOfBirth());
-        customer1.setAddress(customer.getAddress());
+        customer2.setFirstName(customer.getFirstName());
+        customer2.setLastName(customer.getLastName());
+        customer2.setDateOfBirth(customer.getDateOfBirth());
+        customer2.setAddress(customer.getAddress());
     }
     
     @Test
     public void findByFirstOrLastNameContainsTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
-        Customer customer2 = new Customer("second","last", newDate("Jan 01, 1971"), address);
         when(customerRepository.findByFirstNameContainsOrLastNameContains("last", "last")).thenReturn(Optional.of(Arrays.asList(customer, customer2)));
         
         List<Customer> result = customerService.findCustomer("last");
@@ -107,7 +104,6 @@ public class CustomerServiceTest {
     //Find by valid id
     @Test
     public void findByValidId() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
 
         Customer result = customerService.getCustomer(1L);
@@ -118,10 +114,8 @@ public class CustomerServiceTest {
     //Update customer address
     @Test
     public void updateCustomerAddressTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
-        Customer updatedcustomer = new Customer("first","last", newDate("Jan 01, 1971"), address);
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
-        when(customerRepository.save(customer)).thenReturn(updatedcustomer);
+        when(customerRepository.save(customer)).thenReturn(customer2);
 
         Customer result = customerService.updateCustomerAddress(1L, address);
 
@@ -132,7 +126,6 @@ public class CustomerServiceTest {
     //Unwrap customer
     @Test
     public void unwrapCustomerTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
         Optional<Customer> optcustomer = Optional.of(customer);
         Optional<Customer> emptyOptCustomer = Optional.empty();
 
@@ -146,8 +139,6 @@ public class CustomerServiceTest {
 
     @Test
     public void unwrapCustomerListTest() {
-        Customer customer = new Customer("first","last", newDate("Jan 01, 1971"), address);
-        Customer customer2 = new Customer("first","last", newDate("Jan 01, 1971"), address);
         List<Customer> customerlist = Arrays.asList(customer, customer2);
 
         Optional<List<Customer>> optcustomer = Optional.of(customerlist);

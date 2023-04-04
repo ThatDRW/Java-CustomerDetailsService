@@ -3,6 +3,7 @@ package com.thatdrw.customerdetailsservice.validation;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import org.junit.Before;
@@ -22,6 +23,8 @@ public class AddressNL_HouseNumberTest {
 
     private Validator validator;
     private Address address;
+    private String[] houseNumbersValid;
+    private String[] houseNumbersInvalid;
 
     @Before
     public void setUp() {
@@ -29,13 +32,13 @@ public class AddressNL_HouseNumberTest {
         validator = factory.getValidator();
 
         address = new Address("Test Street", "1234", "1234AB", "ThatVille");
+        houseNumbersValid = new String[] {"9001","1","192a","12-14", "12/II", "1 apt. 1"};
+        houseNumbersInvalid = new String[] {"a123a","afh","x&$","","11,3"};
     }
 
     @Test
     public void OnlyValidHouseNumberTest() {
-        String[] houseNumbers = {"9001","1","192a","12-14", "12/II", "1 apt. 1"};
-
-        for (String houseNumber: houseNumbers) {
+        for (String houseNumber: houseNumbersValid) {
             address.setHouseNumber(houseNumber);
     
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
@@ -46,9 +49,7 @@ public class AddressNL_HouseNumberTest {
 
     @Test
     public void OnlyInvalidHouseNumberTest() {
-        String[] houseNumbers = {"a123a","afh","x&$","","11,3"};
-
-        for (String houseNumber: houseNumbers) {
+        for (String houseNumber: houseNumbersInvalid) {
             address.setHouseNumber(houseNumber);
 
             Set<ConstraintViolation<Address>> violations = validator.validate(address);

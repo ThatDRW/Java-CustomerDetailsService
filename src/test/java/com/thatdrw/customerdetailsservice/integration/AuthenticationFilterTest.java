@@ -2,6 +2,7 @@ package com.thatdrw.customerdetailsservice.integration;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,15 @@ public class AuthenticationFilterTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private String randomusername;
+    private String json;
+
+    @Before
+    public void setUp() throws Exception {
+        randomusername = "user" + (Math.random() * 1000);
+        json = createUserJson(randomusername,"pass");
+    }
+
     @Test
     public void contextLoads() {
         assertNotNull(userController);
@@ -50,8 +60,6 @@ public class AuthenticationFilterTest {
 
     @Test
     public void attemptAuthenticationTestValid() throws Exception {
-        String randomusername = "user" + (Math.random() * 1000);
-        String json = createUserJson(randomusername,"pass");
         addMockUserToRepo(json);
 
         RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH)

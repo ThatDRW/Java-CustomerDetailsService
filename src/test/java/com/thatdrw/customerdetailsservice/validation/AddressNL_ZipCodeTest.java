@@ -22,6 +22,8 @@ public class AddressNL_ZipCodeTest {
 
     private Validator validator;
     private Address address;
+    private String[] zipCodesValid;
+    private String[] zipCodesInvalid;
 
     @Before
     public void setUp() {
@@ -29,13 +31,13 @@ public class AddressNL_ZipCodeTest {
         validator = factory.getValidator();
 
         address = new Address("Test Street", "1234", "1234AB", "ThatVille");
+        zipCodesValid = new String[] {"1234AB","1234 AB","1234  AB","9999 ZZ"};
+        zipCodesInvalid = new String[] {"1111","123434","AA 1234","BB BBBB","what"};
     }
 
     @Test
     public void OnlyValidZipCodeTest() {
-        String[] zipCodes = {"1234AB","1234 AB","1234  AB","9999 ZZ"};
-
-        for (String zipCode: zipCodes) {
+        for (String zipCode: zipCodesValid) {
             address.setZipCode(zipCode);
     
             Set<ConstraintViolation<Address>> violations = validator.validate(address);
@@ -46,9 +48,7 @@ public class AddressNL_ZipCodeTest {
 
     @Test
     public void OnlyInvalidZipCodeTest() {
-        String[] zipCodes = {"1111","123434","AA 1234","BB BBBB","what"};
-
-        for (String zipCode: zipCodes) {
+        for (String zipCode: zipCodesInvalid) {
             address.setZipCode(zipCode);
 
             Set<ConstraintViolation<Address>> violations = validator.validate(address);

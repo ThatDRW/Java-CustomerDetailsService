@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,9 +31,15 @@ public class UserServiceTest {
     @InjectMocks
     private UserServiceImpl userService;
 
+    private User user;
+
+    @Before
+    public void setUp() {
+        user = new User("user", "pass");
+    }
+
     @Test
     public void getUserFromRepoByIdTest() {
-        User user = new User("user", "pass");
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 
         User result = userService.getUser(user.getId());
@@ -42,7 +49,6 @@ public class UserServiceTest {
 
     @Test
     public void getUserFromRepoByNameTest() {
-        User user = new User("user", "pass");
         when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
 
         User result = userService.getUser(user.getUsername());
@@ -52,7 +58,6 @@ public class UserServiceTest {
 
     @Test
     public void saveUserTest() {
-        User user = new User("user", "pass");
         when(userRepository.save(user)).thenReturn(user);
         when(bCryptPasswordEncoder.encode(user.getPassword())).thenReturn("mockedhashedpass");
 
@@ -63,7 +68,6 @@ public class UserServiceTest {
 
     @Test
     public void unwrapUserTest() {
-        User user = new User("user", "pass");
         Optional<User> optuser = Optional.of(user);
         Optional<User> emptyOptUser = Optional.empty();
 
