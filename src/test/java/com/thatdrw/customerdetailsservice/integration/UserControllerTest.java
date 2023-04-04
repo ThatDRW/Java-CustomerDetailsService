@@ -61,7 +61,7 @@ public class UserControllerTest {
 
         String json = writer.writeValueAsString(user);
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/user/register")
+        RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.REGISTER_PATH)
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);
 
@@ -106,7 +106,7 @@ public class UserControllerTest {
 
         String json = writer.writeValueAsString(user);
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/user/register")
+        RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.REGISTER_PATH)
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);
 
@@ -114,7 +114,7 @@ public class UserControllerTest {
         //#endregion
 
         //#region Authenticate and retrieve Bearer Token
-        RequestBuilder authRequest = MockMvcRequestBuilders.post("/authenticate")
+        RequestBuilder authRequest = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH)
                                                             .contentType(MediaType.APPLICATION_JSON)
                                                             .content(json);
 
@@ -149,14 +149,14 @@ public class UserControllerTest {
 
         String invJson = invWriter.writeValueAsString(invalidUser);
 
-        RequestBuilder invRequest = MockMvcRequestBuilders.post("/authenticate")
+        RequestBuilder invRequest = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH)
                                                             .contentType(MediaType.APPLICATION_JSON)
                                                             .content(invJson);
 
         mockMvc.perform(invRequest).andExpect(status().isNotFound());
 
         //      - Bad Request
-        RequestBuilder badRequest = MockMvcRequestBuilders.post("/authenticate");
+        RequestBuilder badRequest = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH);
 
         mockMvc.perform(badRequest).andExpect(status().isBadRequest());
     }
