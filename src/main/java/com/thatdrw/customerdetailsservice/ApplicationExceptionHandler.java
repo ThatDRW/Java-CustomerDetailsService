@@ -35,7 +35,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Object> handleDataAccessException(EmptyResultDataAccessException ex) {
-        ErrorResponse error = new ErrorResponse(Arrays.asList("Cannot delete non-existing resource"));  
+        ErrorResponse error = new ErrorResponse(Arrays.asList("Cannot delete non-existing resource."));  
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
