@@ -25,6 +25,7 @@ import java.util.Date;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -62,17 +63,25 @@ public class CustomerControllerTest {
         DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
 		return format.parse(dateString);
 	}
+
+    private String mapToJson(Object object) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
+        try {
+            return writer.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "JsonProcessingException thrown.";
+        }
+    }
     
     public String generateCustomerJson() throws Exception {
         Address address = new Address("TestingStreet", "1233", "1234AB", "ThatVille");
 
         Customer customer = new Customer("first","last", newDate("Feb 21, 1995"), address);
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter writer = mapper.writer().withDefaultPrettyPrinter();
-
-        return writer.writeValueAsString(customer);
+        return this.mapToJson(customer);
     }
 
     public void addMockCustomerToRepo() throws Exception {
@@ -162,15 +171,16 @@ public class CustomerControllerTest {
     public void updateCustomerAddressTest() throws Exception {
         addMockCustomerToRepo();
 
-        String newAddress = "This is my new address!";
+        Address newAddress = new Address("ThisNewStreet","21","1234AB","HeyThere");
+
         RequestBuilder request = MockMvcRequestBuilders.post("/customer/1/updateAddress")
-                                                        .contentType(MediaType.TEXT_PLAIN)
-                                                        .content(newAddress);
+                                                        .contentType(MediaType.APPLICATION_JSON)
+                                                        .content(this.mapToJson(newAddress));
 
         mockMvc.perform(request)
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.address").value(newAddress));
+                .andExpect(jsonPath("$.address.streetName").value("ThisNewStreet"));
     }
     
 }
