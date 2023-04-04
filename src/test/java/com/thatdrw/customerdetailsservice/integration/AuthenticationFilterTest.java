@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.thatdrw.customerdetailsservice.entity.User;
+import com.thatdrw.customerdetailsservice.security.SecurityConstants;
 import com.thatdrw.customerdetailsservice.web.CustomerController;
 import com.thatdrw.customerdetailsservice.web.UserController;
 
@@ -53,7 +54,7 @@ public class AuthenticationFilterTest {
         String json = createUserJson(randomusername,"pass");
         addMockUserToRepo(json);
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/authenticate")
+        RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH)
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(json);
 
@@ -69,7 +70,7 @@ public class AuthenticationFilterTest {
 
         String invalidjson = createUserJson(randomusername, "invalidpass");
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/authenticate")
+        RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.AUTH_PATH)
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(invalidjson);
 
@@ -88,7 +89,7 @@ public class AuthenticationFilterTest {
     }
     
     public void addMockUserToRepo(String json) throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/user/register")
+        RequestBuilder request = MockMvcRequestBuilders.post(SecurityConstants.REGISTER_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json);
     
