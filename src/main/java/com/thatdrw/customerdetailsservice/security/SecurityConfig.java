@@ -8,8 +8,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-
 import com.thatdrw.customerdetailsservice.security.filter.AuthenticationFilter;
 import com.thatdrw.customerdetailsservice.security.filter.ExceptionHandlerFilter;
 import com.thatdrw.customerdetailsservice.security.filter.JWTAuthorizationFilter;
@@ -48,13 +46,13 @@ public class SecurityConfig {
 
     CorsConfigurationSource corsConfigurationSource() {
         final var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setExposedHeaders(Arrays.asList("*"));
+        configuration.setAllowedOrigins(SecurityConstants.CORS_ALLOWED_ORIGINS);
+        configuration.setAllowedMethods(SecurityConstants.CORS_ALLOWED_METHODS);
+        configuration.setAllowedHeaders(SecurityConstants.CORS_ALLOWED_HEADERS);
+        configuration.setExposedHeaders(SecurityConstants.CORS_EXPOSED_HEADERS);
 
         final var source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration(SecurityConstants.CORS_CONFIG_SOURCE_URL, configuration);
 
         return source;
     }
