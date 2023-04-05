@@ -1,15 +1,7 @@
-FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 AS builder
-
-WORKDIR /workdir/server
-COPY pom.xml /workdir/server/pom.xml
-RUN mvn dependency:go-offline
-
-COPY src /workdir/server/src
-RUN mvn install
-
-
-
-FROM builder AS dev-envs
+#######################################
+#               GITHUB                #
+#######################################
+FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 AS github
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git
 
@@ -17,21 +9,43 @@ RUN useradd -s /bin/bash -m vscode \
  && groupadd docker \
  && usermod -aG docker vscode
 
-# install Docker tools (cli, buildx, compose)
-# COPY --from=gloursdocker/docker / /
-# RUN ls
+WORKDIR /workdir/server
+RUN git clone https://github.com/ThatDRW/Java-CustomerDetailsService.git
+WORKDIR /workdir/server/Java-CustomerDetailsService
+RUN find . -maxdepth 1 -exec mv {} .. \;
 
+
+#######################################
+#               BUILDER               #
+#######################################
+FROM github as builder
+WORKDIR /workdir/server
+# COPY pom.xml /workdir/server/pom.xml
+RUN mvn dependency:go-offline
+
+COPY src /workdir/server/src
+RUN mvn install
+
+
+#######################################
+#           GITHUB DEV-ENV            #
+#######################################
+FROM builder AS dev-envs
 CMD ["mvn", "spring-boot:run"]
 
 
-
+#######################################
+#       PREPARING FOR PRODUCTION      #
+#######################################
 FROM builder as prepare-production
 RUN mkdir -p target/dependency
 WORKDIR /workdir/server/target/dependency
 RUN jar -xf ../*.jar
 
 
-
+#######################################
+#             DEPLOYMENT              #
+#######################################
 FROM eclipse-temurin:17-jre-focal
 EXPOSE 8080
 VOLUME /tmp
