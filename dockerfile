@@ -20,10 +20,8 @@ RUN find . -maxdepth 1 -exec mv {} .. \;
 #######################################
 FROM github as builder
 WORKDIR /workdir/server
-# COPY pom.xml /workdir/server/pom.xml
-RUN mvn dependency:go-offline
 
-COPY src /workdir/server/src
+RUN mvn dependency:go-offline
 RUN mvn install
 
 
