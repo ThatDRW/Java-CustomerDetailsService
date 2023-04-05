@@ -1,7 +1,7 @@
 package com.thatdrw.customerdetailsservice.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.text.DateFormat;
@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.thatdrw.customerdetailsservice.entity.Address;
 import com.thatdrw.customerdetailsservice.entity.Customer;
@@ -25,7 +25,7 @@ import com.thatdrw.customerdetailsservice.exception.EntityNotFoundException;
 import com.thatdrw.customerdetailsservice.repository.CustomerRepository;
 import com.thatdrw.customerdetailsservice.service.impl.CustomerServiceImpl;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CustomerServiceTest {
 
     @Mock
@@ -38,7 +38,7 @@ public class CustomerServiceTest {
     private Customer customer;
     private Customer customer2;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         address = new Address("TestingStreet","1233","1234AB","ThatVille");
         customer = new Customer("first","last", newDate("Jan 01, 1971"), address);

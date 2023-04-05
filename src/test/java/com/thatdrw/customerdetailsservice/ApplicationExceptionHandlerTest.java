@@ -4,20 +4,19 @@ import java.util.Arrays;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.thatdrw.customerdetailsservice.exception.ErrorResponse;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class ApplicationExceptionHandlerTest {
 
     // Strange IntelliSense bug shows unused import if not used directly like this for some reason.
