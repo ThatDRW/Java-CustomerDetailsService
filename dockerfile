@@ -2,6 +2,9 @@
 #               GITHUB                #
 #######################################
 FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 AS github
+
+# Cachebusting to stay up-to-date.
+ADD https://api.github.com/repos/ThatDRW/Java-CustomerDetailsService/git/refs/heads/master version.json
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git
 
