@@ -9,21 +9,16 @@ RUN useradd -s /bin/bash -m vscode \
  && groupadd docker \
  && usermod -aG docker vscode
 
-WORKDIR /workdir/server
-RUN git clone https://github.com/ThatDRW/Java-CustomerDetailsService.git
-WORKDIR /workdir/server/Java-CustomerDetailsService
-RUN find . -maxdepth 1 -exec mv {} .. \;
-
-
 #######################################
 #               BUILDER               #
 #######################################
 FROM github as builder
 WORKDIR /workdir/server
-# COPY pom.xml /workdir/server/pom.xml
-RUN mvn dependency:go-offline
+COPY pom.xml /workdir/server/pom.xml
 
+RUN mvn dependency:go-offline
 COPY src /workdir/server/src
+
 RUN mvn install
 
 
