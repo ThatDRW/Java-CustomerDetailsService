@@ -1,51 +1,42 @@
 #######################################
-#               GITHUB                #
+#            CONFIGURATION            #
+#   Only required to set ARGs below   #
 #######################################
-FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 AS github
-RUN apt-get update \
- && apt-get install -y --no-install-recommends git
+ARG C_WORKING_DIR=/workdir/server
+ARG C_ENTRY_POINT="com.thatdrw.customerdetailsservice.CustomerdetailsserviceApplication"
+ARG C_EXPOSE_PORT=8080
 
-RUN useradd -s /bin/bash -m vscode \
- && groupadd docker \
- && usermod -aG docker vscode
 
 #######################################
 #               BUILDER               #
 #######################################
-FROM github as builder
-WORKDIR /workdir/server
-COPY pom.xml /workdir/server/pom.xml
+FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 as builder
+WORKDIR ${C_WORKING_DIR}
+COPY pom.xml ${C_WORKING_DIR}/pom.xml
 
 RUN mvn dependency:go-offline
-COPY src /workdir/server/src
+COPY src ${C_WORKING_DIR}/src
 
 RUN mvn install
 
 
 #######################################
-#           GITHUB DEV-ENV            #
-#######################################
-FROM builder AS dev-envs
-CMD ["mvn", "spring-boot:run"]
-
-
-#######################################
-#       PREPARING FOR PRODUCTION      #
+#          PREPARE-PRODUCTION         #
 #######################################
 FROM builder as prepare-production
 RUN mkdir -p target/dependency
-WORKDIR /workdir/server/target/dependency
+WORKDIR ${C_WORKING_DIR}/target/dependency
 RUN jar -xf ../*.jar
 
 
 #######################################
-#             DEPLOYMENT              #
+#             PRODUCTION              #
 #######################################
-FROM eclipse-temurin:17-jre-focal
-EXPOSE 8080
+FROM eclipse-temurin:17-jre-focal as production
+EXPOSE ${C_EXPOSE_PORT}
 VOLUME /tmp
-ARG DEPENDENCY=/workdir/server/target/dependency
+ARG DEPENDENCY=${C_WORKING_DIR}/target/dependency
 COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=prepare-production ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.thatdrw.customerdetailsservice.CustomerdetailsserviceApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*",${C_ENTRY_POINT}]
